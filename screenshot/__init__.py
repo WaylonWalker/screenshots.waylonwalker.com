@@ -30,7 +30,7 @@ def notify_exception(type, value, tb) -> None:
 
 sys.excepthook = notify_exception
 
-REPO_ROOT = Path("~/git/screenshots.waylonwalker.com")
+REPO_ROOT = Path.home() / "git/screenshots.waylonwalker.com"
 
 
 def main() -> None:
