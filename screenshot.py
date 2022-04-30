@@ -1,15 +1,22 @@
 #!/home/walkers/git/.venv/bin/python
+from pathlib import Path
 import subprocess
+from subprocess import Popen
 import sys
+from tempfile import mkdtemp
 import time
 import traceback
-from pathlib import Path
-from subprocess import Popen
-from tempfile import mkdtemp
 
 from git import Repo
 
 POST_SHOT_SLEEP = 15
+
+
+def notify_send(msg):
+    Popen(
+        f'notify-send "screenshot.py hit an exception" "{msg}" -a screenshot.py',
+        shell=True,
+    )
 
 
 def notify_exception(type, value, tb):
@@ -17,10 +24,7 @@ def notify_exception(type, value, tb):
 
     msg = f"caller: {' '.join(sys.argv)}\n{type}: {value}\n{traceback_details}"
     print(msg)
-    Popen(
-        f'notify-send "screenshot.py hit an exception" "{msg}" -a screenshot.py',
-        shell=True,
-    )
+    notify_send(msg)
 
 
 sys.excepthook = notify_exception
@@ -68,3 +72,4 @@ if repo.git.diff(cached=True) != "":
 repo.git.add(output_image)
 repo.git.commit(message=f"NEW SHOT: {name}")
 repo.git.push()
+notify_send(f"successful push {name}"
