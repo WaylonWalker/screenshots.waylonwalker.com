@@ -85,4 +85,4 @@ def main() -> None:
     repo.git.commit(message=f"NEW SHOT: {name}")
     repo.git.push()
     notify_send(f"successful push {name}")
-    pyperclip.copy(f"[{name}](https://screenshots.waylonwalker.com/{name}.webp)")
+    pyperclip.copy(f"![{name}](https://screenshots.waylonwalker.com/{name}.webp)")
