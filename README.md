@@ -15,7 +15,7 @@ repo.
 
 * requires flameshot cli
 
-``` python
+``` bash
 pipx install git+https://github.com/WaylonWalker/screenshots.waylonwalker.com
 ```
 
