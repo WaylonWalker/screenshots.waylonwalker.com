@@ -15,7 +15,7 @@ POST_SHOT_SLEEP = 15
 
 def notify_send(msg):
     Popen(
-        f'notify-send "screenshot.py hit an exception" "{msg}" -a screenshot.py',
+        f'notify-send "screenshot.py: " "{msg}" -a screenshot.py',
         shell=True,
     )
 
