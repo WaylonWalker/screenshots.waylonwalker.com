@@ -1,5 +1,6 @@
 #!/home/walkers/git/.venv/bin/python
 from pathlib import Path
+import pyperclip
 import subprocess
 from subprocess import Popen
 import sys
@@ -76,3 +77,4 @@ def main() -> None:
     repo.git.commit(message=f"NEW SHOT: {name}")
     repo.git.push()
     notify_send(f"successful push {name}")
+    pyperclip.copy(f"[{name}](https://screenshots.waylonwalker.com/{name})")
