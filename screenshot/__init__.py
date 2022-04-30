@@ -31,7 +31,7 @@ sys.excepthook = notify_exception
 
 
 def main() -> None:
-    output_dir = Path(__file__).parent / "static"
+    output_dir = Path(__file__).parents[1] / "static"
     output_dir.mkdir(exist_ok=True)
     name_proc = subprocess.Popen(
         'zenity --entry --text="filename"', shell=True, stdout=subprocess.PIPE
@@ -66,7 +66,7 @@ def main() -> None:
     squoosh_proc = subprocess.Popen(squoosh_cmd, shell=True)
     squoosh_proc.wait()
 
-    repo = Repo(Path(__file__).parent)
+    repo = Repo(Path(__file__).parents[1])
 
     if repo.git.diff(cached=True) != "":
         # handle staged files
