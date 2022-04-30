@@ -11,6 +11,7 @@ import traceback
 from git import Repo
 
 POST_SHOT_SLEEP = 15
+POST_ZENITY_SLEEP = 1
 
 
 def notify_send(msg):
@@ -43,6 +44,11 @@ def main() -> None:
     name = name_proc.stdout.read().decode().strip().lower().replace(" ", "-")
     if name == "":
         return
+
+    # if we don't give zenity enough time to close it will be in our screenshot
+    for _ in range(POST_ZENITY_SLEEP):
+        print(".", end="")
+        time.sleep(1)
 
     shot_dir = mkdtemp()
     proc = subprocess.Popen(
