@@ -45,6 +45,8 @@ def main() -> None:
     if name == "":
         return
 
+    pyperclip.copy(f"![{name}](https://screenshots.waylonwalker.com/{name}.webp)")
+
     # if we don't give zenity enough time to close it will be in our screenshot
     for _ in range(POST_ZENITY_SLEEP):
         print(".", end="")
@@ -85,4 +87,3 @@ def main() -> None:
     repo.git.commit(message=f"NEW SHOT: {name}")
     repo.git.push()
     notify_send(f"successful push {name}")
-    pyperclip.copy(f"![{name}](https://screenshots.waylonwalker.com/{name}.webp)")
